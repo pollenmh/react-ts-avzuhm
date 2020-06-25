@@ -1,12 +1,20 @@
 import React,{Component} from 'react';
-import styles from './Page.module.scss';
+import  './Page.module.scss';
+
+class Header extends Component
+{
+render(){ return <div className='header'></div>}
+}
 
 export default  class Parent1 extends Component
 {
+ 
 
 render()
 {
-  return <div className={Header}></div>;
+  return (<div className='container'>
+  <Header/>
+  </div>);
 }
 
 Test()
@@ -22,3 +30,4 @@ export  function Parent()
   //document.write('Hi I am document write.');
   return null;
 }
+
