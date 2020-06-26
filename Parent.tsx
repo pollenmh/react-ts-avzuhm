@@ -3,17 +3,24 @@ import  './Page.module.scss';
 
 class Header extends Component
 {
-  private dict:{k1:any};
+  private coll:[];
+  private dict:[];
+  constructor(props)
+  {
+    super(props);
+    this.state={data1:{}}
+  }
+componentDidMount() {
+  this.loaddata();
+}
+render(){ return  <div>Data : {JSON.stringify(this.state.data1)}</div>
 
-render(){ return <div className='header'></div>}
+}
 
 loaddata()
 {
-  let arr1=[1,2,3,4,5];
-  let arr2=[6,7,8,9,10];
-  this.dict.k1.push(arr1);
-  this.dict.k1.push(arr2);
-  for(let i=0; i<this.dict.)
+  fetch('https://ghibliapi.herokuapp.com/films').then(res => res.json()).then(res => {this.setState({data1:res});console.log('data loaded')})
+      .catch(() => console.log('error'));
 }
 }
 
