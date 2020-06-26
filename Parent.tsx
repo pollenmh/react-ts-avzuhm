@@ -28,7 +28,7 @@ componentDidMount() {
 
 render(){  
   //<div>Data : {JSON.stringify(this.state.data1)}</div>   
-   return(<ul>{this.Iterate()}</ul>);
+   return(<ul className="header">{this.Iterate()}</ul>);
 }
 
 loaddata()
@@ -45,7 +45,7 @@ export default  class Parent1 extends Component
 render()
 {
   return (<div className='container'>
-  <Header/>
+  <Header />
   </div>);
 }
 
