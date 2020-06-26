@@ -10,15 +10,12 @@ interface IDataState{
   data1:{};
 }
 
-class Header extends Component<IData,IDataState>
+class Header extends Component<{},{}>
 {
-  private coll:[];
-  private dict:[];
-  private html1="";
+   
  readonly state={data1:{}}
 componentDidMount() {
-  this.loaddata();
-  
+  this.loaddata();  
 }
 
  Iterate()
