@@ -1,20 +1,37 @@
 import React,{Component} from 'react';
 import  './Page.module.scss';
 
-class Header extends Component
+interface IData{
+  id:string;
+  title:string;
+  description:string;
+}
+interface IDataState{
+  data1:{};
+}
+
+class Header extends Component<IData,IDataState>
 {
   private coll:[];
   private dict:[];
-  constructor(props)
-  {
-    super(props);
-    this.state={data1:{}}
-  }
+  private html1="";
+ readonly state={data1:{}}
 componentDidMount() {
   this.loaddata();
+  
 }
-render(){ return  <div>Data : {JSON.stringify(this.state.data1)}</div>
 
+ Iterate()
+{
+  const items=[];  
+  for(let temp of this.state.data1)
+  {items.push(<li>{temp.title} - {temp.id}  </li>);}    
+  return items;
+}
+
+render(){  
+  //<div>Data : {JSON.stringify(this.state.data1)}</div>   
+   return(<ul>{this.Iterate()}</ul>);
 }
 
 loaddata()
