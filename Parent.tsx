@@ -30,7 +30,7 @@ componentDidMount() {
 lihandler(eve)
 {
 console.log(eve.target);
-this.setState({title:eve.target.getAttribute('data-desc')});
+this.setState({description:eve.target.getAttribute('data-desc')});
 //this.setState({show:1});
 this.openModal();
 }
@@ -64,7 +64,7 @@ render(){
             <a className="close" onClick={this.closeModal}>
               &times;
             </a>
-            {this.state.title}          
+            {this.state.description}          
             
           </div>
         </Popup>
