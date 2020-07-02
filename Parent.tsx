@@ -1,6 +1,7 @@
 import React,{Component} from 'react';
 import  './Page.module.scss';
-import Popup from "./Popuptest';
+//import Popup from './Popup';
+import Popup from 'reactjs-popup';
 
 interface IData{
   id:string;
@@ -9,49 +10,73 @@ interface IData{
 }
 interface IDataState{
   data1:{};
+  open:boolean;
 }
 
 
-class Header extends Component<{},{}>
+class Header extends Component<{IData}>
 {
+   constructor(props) {
+    super(props);
+    this.state = {data1:{}, open: false,title:String,description:String };
+    this.openModal = this.openModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
+  }
    
- readonly state={data1:{},show:0}
+ //readonly state={data1:{},show:0}
 componentDidMount() {
   this.loaddata();  
 }
 lihandler(eve)
 {
-console.log(eve.target.id);
-this.setState({show:1});
+console.log(eve.target);
+this.setState({title:eve.target.getAttribute('data-desc')});
+//this.setState({show:1});
+this.openModal();
 }
 
-
+ openModal() {
+    this.setState({ open: true });
+  }
+  closeModal() {
+    this.setState({ open: false });
+  }
 
  Iterate()
 {
   const items=[];  
   for(let temp of this.state.data1)
-  {items.push(<li onClick={()=>this.lihandler(event)}  id={temp.id}>{temp.title} - {temp.id}  </li>);}    
+  {items.push(<li data-desc={temp.description} onClick={()=>this.lihandler(event)}  id={temp.id}>{temp.title}   </li>);}    
   return items;
 }
 
 render(){  
   //<div>Data : {JSON.stringify(this.state.data1)}</div>   
- return (<div className="example-warper"> <dialog/></div>);
  
-   //return(<ul  className="header">{this.Iterate()}</ul>);
+ 
+   return(<div><ul  className="header">{this.Iterate()}</ul>
+      <Popup 
+          open={this.state.open}
+          closeOnDocumentClick
+          onClose={this.closeModal}
+        >
+          <div className="modal">
+            <a className="close" onClick={this.closeModal}>
+              &times;
+            </a>
+            {this.state.title}          
+            
+          </div>
+        </Popup>
+   </div>);
 }
 
 loadpopup(){
  {if(this.state.show ==1){
     console.log(this.state.show);
-     <Popup
-      trigger={<button className="button"> Right Top </button>}
-      position="right top"
-      on="hover"
-    >
-      <Card title="Right Top" />
-    </Popup>}}
+     
+      
+    }}
     
    
 }
